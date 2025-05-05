@@ -1,5 +1,21 @@
+<!DOCTYPE html>
 <html>
+<head>
+  <title>HA Sensorwert</title>
+</head>
 <body>
-  <h1>Hallo Welt!</h1>
+  <h1>Sensorwert:</h1>
+  <div id="value">Lade...</div>
+
+  <script>
+    fetch("data.json")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("value").innerText = `${data.value} (Stand: ${data.timestamp})`;
+      })
+      .catch(err => {
+        document.getElementById("value").innerText = "Fehler beim Laden";
+      });
+  </script>
 </body>
 </html>
